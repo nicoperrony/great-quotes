@@ -1,0 +1,32 @@
+version: "3.2"
+services:
+  nginx:
+    container_name: great-quotes.webserver
+    image: great-quotes.nginx:0.1
+    build:
+      context: ..
+      dockerfile: ./server/nginx/Dockerfile
+    ports:
+      - "4200:80"
+  mongodb:
+    container_name: great-quotes.database
+    image: great-quotes.mongo:0.1
+    build:
+      context: ..
+      dockerfile: ./server/mongodb/Dockerfile
+    secrets:
+      - mongodb-root-username
+      - mongodb-root-password
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME_FILE=/var/run/secrets/mongodb-root-username
+      - MONGO_INITDB_ROOT_PASSWORD_FILE=/var/run/secrets/mongodb-root-password
+      - MONGO_INITDB_DATABASE=great-quotes
+    ports:
+      - 27017:27017
+    volumes:
+      - /app/great-quotes/data/db/:/data/db
+secrets:
+  mongodb-root-username:
+    file: ./mongodb/root-username
+  mongodb-root-password:
+    file: ./mongodb/root-password

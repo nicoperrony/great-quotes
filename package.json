@@ -1,0 +1,16 @@
+{
+  "name": "great-quotes",
+  "version": "0.1",
+  "description": "Project to save my favorites quotes & lyrics (+ more)",
+  "author": "Nicolas Perrony",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nicoperrony/great-quotes"
+  },
+  "scripts": {
+    "build:server": "docker-compose --file ./server/docker-compose.yml build",
+    "deploy:server": "docker-compose --file server/docker-compose.yml up -d",
+    "stop:server": " docker-compose --file server/docker-compose.yml down"
+  }
+}
