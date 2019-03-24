@@ -26,7 +26,7 @@ This application use the following technologies
 
 ### API
 
-_TODO_
+- .NET Core
 
 ### Front-end
 

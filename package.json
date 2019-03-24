@@ -1,6 +1,6 @@
 {
   "name": "great-quotes",
-  "version": "0.1",
+  "version": "v0.0.1",
   "description": "Project to save my favorites quotes & lyrics (+ more)",
   "author": "Nicolas Perrony",
   "license": "MIT",
@@ -9,8 +9,9 @@
     "url": "https://github.com/nicoperrony/great-quotes"
   },
   "scripts": {
+    "start-env-dev:api": "docker run --rm -it -v /volume1/develop/great-quotes/api/:/app -w /app --name env-dotnetcore --user 0  mcr.microsoft.com/dotnet/core/sdk",
     "build:server": "docker-compose --file ./server/docker-compose.yml build",
-    "deploy:server": "docker-compose --file server/docker-compose.yml up -d",
-    "stop:server": " docker-compose --file server/docker-compose.yml down"
+    "deploy:server": "docker-compose --file ./server/docker-compose.yml up -d",
+    "stop:server": " docker-compose --file ./server/docker-compose.yml down"
   }
 }
