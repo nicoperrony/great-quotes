@@ -9,7 +9,7 @@
     "url": "https://github.com/nicoperrony/great-quotes"
   },
   "scripts": {
-    "start-env-dev:api": "docker run --rm -it -v /volume1/develop/great-quotes/api/:/app -w /app --name env-dotnetcore --user 0  mcr.microsoft.com/dotnet/core/sdk",
+    "start-env-dev:api": "docker run --rm -it -v /volume1/develop/great-quotes/api/:/app -w /app --user 0 -p 5000:5000 -p 5001:5001 --name env-dotnetcore mcr.microsoft.com/dotnet/core/sdk",
     "build:server": "docker-compose --file ./server/docker-compose.yml build",
     "deploy:server": "docker-compose --file ./server/docker-compose.yml up -d",
     "stop:server": " docker-compose --file ./server/docker-compose.yml down"
