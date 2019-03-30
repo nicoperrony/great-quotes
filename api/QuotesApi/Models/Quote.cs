@@ -9,10 +9,10 @@ namespace QuotesApi.Models
     [BsonRepresentation(BsonType.ObjectId)]
     public string Id { get; set; }
 
-    [BsonElement("Quote")]
+    [BsonElement("content")]
     public string Content { get; set; }
 
-    [BsonElement("Author")]
+    [BsonElement("author")]
     public string Author { get; set; }
   }
 }

@@ -1,3 +1,10 @@
+db.createUser({
+  user: "app-user",
+  pwd: "gr43tq0tes!",
+  roles: [{ role: "readWrite", db: "great-quotes" }],
+  mechanisms: ["SCRAM-SHA-256"]
+});
+
 db.createCollection("quotes");
 db.quotes.insertMany([
   {
