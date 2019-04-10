@@ -27,20 +27,15 @@ namespace QuotesApi.Services
       return _collection.Find<Quote>(Quote => Quote.Id == id).FirstOrDefault();
     }
 
-    public Quote Create(Quote Quote)
+    public Quote Create(Quote quoteIn)
     {
-      _collection.InsertOne(Quote);
-      return Quote;
+      _collection.InsertOne(quoteIn);
+      return quoteIn;
     }
 
-    public void Update(string id, Quote QuoteIn)
+    public void Update(Quote quoteIn)
     {
-      _collection.ReplaceOne(Quote => Quote.Id == id, QuoteIn);
-    }
-
-    public void Remove(Quote QuoteIn)
-    {
-      _collection.DeleteOne(Quote => Quote.Id == QuoteIn.Id);
+      _collection.ReplaceOne(Quote => Quote.Id == quoteIn.Id, quoteIn);
     }
 
     public void Remove(string id)
