@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Net;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using QuotesApi.Models;
 using QuotesApi.Services;
@@ -21,7 +22,7 @@ namespace QuotesApi.Controllers
     /// </summary>
     /// <response code="200">All quote is returned</response>
     [HttpGet]
-    [ProducesResponseType(200)]
+    [ProducesResponseType(typeof(List<Quote>), (int)HttpStatusCode.OK)]
     public ActionResult<List<Quote>> Get()
     {
       return _service.Get();
@@ -34,8 +35,8 @@ namespace QuotesApi.Controllers
     /// <response code="200">Quote is returned</response>
     /// <response code="404">Quote is not found</response>  
     [HttpGet("{id:length(24)}", Name = "GetQuote")]
-    [ProducesResponseType(200)]
-    [ProducesResponseType(404)]
+    [ProducesResponseType(typeof(Quote), (int)HttpStatusCode.OK)]
+    [ProducesResponseType((int)HttpStatusCode.NotFound)]
     public ActionResult<Quote> Get(string id)
     {
       var Quote = _service.Get(id);
@@ -55,8 +56,8 @@ namespace QuotesApi.Controllers
     /// <response code="201">Quote is created. The quote newly created is returned</response>
     /// <response code="400">Quote is incomplete</response>  
     [HttpPost]
-    [ProducesResponseType(201)]
-    [ProducesResponseType(400)]
+    [ProducesResponseType((int)HttpStatusCode.Created)]
+    [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     public ActionResult<Quote> Create(Quote quote)
     {
       _service.Create(quote);
@@ -71,8 +72,8 @@ namespace QuotesApi.Controllers
     /// <response code="204">Quote is updated</response>
     /// <response code="404">Quote is not found</response>  
     [HttpPut("{id:length(24)}")]
-    [ProducesResponseType(204)]
-    [ProducesResponseType(404)]
+    [ProducesResponseType((int)HttpStatusCode.NoContent)]
+    [ProducesResponseType((int)HttpStatusCode.NotFound)]
     public IActionResult Update(Quote quote)
     {
       var Quote = _service.Get(quote.Id);
@@ -94,8 +95,8 @@ namespace QuotesApi.Controllers
     /// <response code="204">Quote is deleted</response>
     /// <response code="404">Quote is not found</response>  
     [HttpDelete("{id:length(24)}")]
-    [ProducesResponseType(204)]
-    [ProducesResponseType(404)]
+    [ProducesResponseType((int)HttpStatusCode.NoContent)]
+    [ProducesResponseType((int)HttpStatusCode.NotFound)]
     public IActionResult Delete(string id)
     {
       var Quote = _service.Get(id);
